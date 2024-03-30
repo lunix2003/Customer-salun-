@@ -7,7 +7,7 @@ namespace Customer_salun_.Data
         static OracleConnection conn;
         public static OracleConnection GetConnection()
         {
-            conn = new OracleConnection("Data Source = localhost:1521/XEPDB1; User id = Loan; Password = Loan1234");
+            conn = new OracleConnection("Data Source = localhost:1521/XEPDB1; User id = Customer; Password = customer123");
             if (conn != null)
             {
                 conn.Open();

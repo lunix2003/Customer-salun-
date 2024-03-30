@@ -25,8 +25,8 @@ namespace Customer_salun_.Data
             {
                 OracleCommand cmd = new OracleCommand("AddressAdd", Connection.GetConnection());
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("AddressName", address.AddressName);
                 cmd.Parameters.Add("CustomerId", address.CustomerId);
+                cmd.Parameters.Add("AddressName", address.AddressName);
                 cmd.ExecuteNonQuery();
 
             }

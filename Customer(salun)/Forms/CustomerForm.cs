@@ -43,16 +43,18 @@ namespace Customer_salun_.Forms
             {
                 try
                 {
-
                     int id = Customers.Add(cus);
                     if (id > 0)
                     {
-                        foreach (DataRow row in dtAddress.Rows)
+                        if(dtAddress != null)
                         {
-                            Address addr = new Address();
-                            addr.AddressName = row["AddressName"].ToString();
-                            addr.CustomerId = id;
-                            Addresses.Add(addr);
+                            foreach (DataRow row in dtAddress.Rows)
+                            {
+                                Address addr = new Address();
+                                addr.AddressName = row["AddressName"].ToString();
+                                addr.CustomerId = id;
+                                Addresses.Add(addr);
+                            }
                         }
                     }
                     MessageBox.Show("Record is saving!.");
@@ -102,7 +104,13 @@ namespace Customer_salun_.Forms
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int id = int.Parse(dgCustomer.SelectedRows[0].Cells[0].Value.ToString());
-            Customers.Delete(id);
+            DialogResult result = MessageBox.Show("Do your want delete this record?", "Delete",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                Customers.Delete(id);
+            }
+            MessageBox.Show("Deleted success");
+            CustomerForm_Load(null, null);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
